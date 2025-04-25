@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMotion Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>FitMotion Tracker</h1>
+    </header>
+    <div class="tabs">
+        <button class="tab-button" onclick="showTab('nutrition')">Nutrition</button>
+        <button class="tab-button" onclick="showTab('workout')">Workout</button>
+    </div>
+
+    <div id="nutrition" class="tab-content">
+        <h2>TDEE Calculator</h2>
+        <form id="tdee-form">
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" id="age" required>
+
+                <label for="height">Height (cm):</label>
+                <input type="number" id="height" required>
+
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" required>
+
+                <label for="gender">Gender:</label>
+                <select id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+                <label for="activity">Activity Level:</label>
+                <select id="activity">
+                    <option value="1.2">Sedentary (little to no exercise)</option>
+                    <option value="1.375">Lightly active</option>
+                    <option value="1.55">Moderately active</option>
+                    <option value="1.725">Very active</option>
+                    <option value="1.9">Super active</option>
+                </select>
+            </div>
+            <button type="button" onclick="calculateTDEE()">Calculate TDEE</button>
+        </form>
+
+        <div id="tdee-result"></div>
+
+        <h3>Calorie Chart</h3>
+        <canvas id="calorie-chart" width="400" height="400"></canvas>
+        <div id="remaining-calories" style="text-align: center; margin-top: 10px; font-size: 1.2em; color: #333; display: none;">Remaining Calories: 2000</div>
+
+        <h3>Food Diary</h3>
+        <form id="food-form">
+            <div class="form-group">
+                <label for="food-name">Food Name:</label>
+                <input type="text" id="food-name" required>
+
+                <label for="calories">Calories:</label>
+                <input type="number" id="calories" disabled>
+
+                <label for="protein">Protein (g):</label>
+                <input type="number" id="protein" required>
+
+                <label for="carbs">Carbs (g):</label>
+                <input type="number" id="carbs" required>
+
+                <label for="fat">Fat (g):</label>
+                <input type="number" id="fat" required>
+            </div>
+            <button type="button" onclick="addFood()">Add to Diary</button>
+        </form>
+
+        <ul id="food-list"></ul>
+    </div>
+
+    <div id="workout" class="tab-content" style="display:none;">
+        <h2>Workout Plan</h2>
+        <form id="workout-form">
+            <div class="form-group">
+                <label for="exercise">Exercise Name:</label>
+                <input type="text" id="exercise" required>
+
+                <label for="sets">Sets:</label>
+                <input type="number" id="sets" required>
+
+                <label for="reps">Reps:</label>
+                <input type="number" id="reps" required>
+            </div>
+            <button type="button" onclick="addExercise()">Add to Workout Plan</button>
+        </form>
+
+        <ul id="workout-list"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
